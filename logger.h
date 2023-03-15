@@ -31,7 +31,7 @@ public:
     {
         if (mPriority <= LogPriority::TracePriority)
         {
-            std::scoped_lock lock(log_mutex);
+            std::lock_guard<std::mutex> lock(log_mutex);
             printf("[Trace]\t");
             printf(message, args...);
             printf("\n");
@@ -43,7 +43,7 @@ public:
     {
         if (mPriority <= LogPriority::TracePriority)
         {
-            std::scoped_lock lock(log_mutex);
+            std::lock_guard<std::mutex> lock(log_mutex);
             printf("[Debug]\t");
             printf(message, args...);
             printf("\n");
@@ -55,7 +55,7 @@ public:
     {
         if (mPriority <= LogPriority::TracePriority)
         {
-            std::scoped_lock lock(log_mutex);
+            std::lock_guard<std::mutex> lock(log_mutex);
             printf("[Info]\t");
             printf(message, args...);
             printf("\n");
@@ -67,7 +67,7 @@ public:
     {
         if (mPriority <= LogPriority::TracePriority)
         {
-            std::scoped_lock lock(log_mutex);
+            std::lock_guard<std::mutex> lock(log_mutex);
             printf("[Warn]\t");
             printf(message, args...);
             printf("\n");
@@ -79,7 +79,7 @@ public:
     {
         if (mPriority <= LogPriority::TracePriority)
         {
-            std::scoped_lock lock(log_mutex);
+            std::lock_guard<std::mutex> lock(log_mutex);
             printf("[Error]\t");
             printf(message, args...);
             printf("\n");
@@ -91,7 +91,7 @@ public:
     {
         if (mPriority <= LogPriority::TracePriority)
         {
-            std::scoped_lock lock(log_mutex);
+            std::lock_guard<std::mutex> lock(log_mutex);
             printf("[Trace]\t");
             printf(message, args...);
             printf("\n");
@@ -100,4 +100,6 @@ public:
 };
 
 LogPriority Logger::mPriority = LogPriority::TracePriority;
+std::mutex Logger::log_mutex;
+
 #endif LOGGER_H

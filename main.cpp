@@ -18,5 +18,10 @@ int main()
         mThread[i] = thread(log_test, mAge);
     }
 
+    for (int i = 0; i < 10; i++)
+    {
+        mThread[i].join();
+    }
+
     return 0;
 }
